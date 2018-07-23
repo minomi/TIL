@@ -5,7 +5,7 @@
 * 때문에 왜 그 때 그 때 최적의 답이 최종적인 최적의 답이 되는지 증명이 필요하다.
 * 그래서 어렵다.
 
-풀어본 문제 
-* [Codility Lesson 16](https://github.com/minomi/Codility/tree/master/lesson_16)
+풀어본 문제
+* [Codility Lesson 16](https://app.codility.com/programmers/lessons/16-greedy_algorithms/)
 * [Coin(BOJ)]()
 * [ATM(BOJ)]()
