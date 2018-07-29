@@ -60,5 +60,22 @@ Thread 생성 후 start() 메서드를 호출했다고 해서 바로 Thread 가 
 * interrupt() : A 스레드의 interrupt() 를 호출하면 A 스레드가 일시 정지 상태가 될 때 A 스레드가 종료된다.
 * interrupted : Thread.interrupted() 를 호출하면 현재 스레드가 interrupted 됐는지 체크한다.
 
+##### Thread Pool
 
-    
+빈번한 Thread 의 생성을 방지 하기 위해 Thread Pool 은 작업 처리에 사용되는 스레드를 제한된 개수만큼 정해 놓고 작업 큐에 들어오는 작업들을 하나씩 스레드가 맡아 처리한다.
+Java 에서는 ExecutorService Interface 와 Executors class 를 이용해 ThreadPool 을 만들 수 있다.
+
+##### newCachedThreadPool vs newFixedThreadPool(nThreads)
+
+* newCachedThreadPool : 초기 스레드 = 코어 스레드 = 0, 최대 스레드 수  = Integer.MAX_VALUE(머신의 성능에 따라 다름) 1개 이상의 스레드가 추가되었을 경우 60초 동안 추가된 스레드가 아무 작업을 하지 않으면 추가된 스레드를 종료하고 풀에서 제거
+* newFixedThreadPool : 초기 스레드 = 0, 코어 스레드 = nThreads 최대 스레드 = nThreads
+
+##### Runnable vs Callable
+
+Thread 의 하나의 작업은 Runnable 과 Callable 의 구현 클래스로 표현하고, 차이점은 리턴값이 있는가 없는가 이다.
+
+##### execute vs submit
+
+둘 다 ExecutorService 의 작업 큐에 Runnable 또는 Callable 객체를 넣을때 사용하는 메서드 
+* execute : 작업 처리 결과를 받지 못함, 작업 처리 도중 예외 발생 -> 스레드 종료 -> 스레드 풀에서 제거
+* submit : 작업 처리 결과를 받을 수 있음, 작업 처리 도중 예외 발생 -> 스레드 종료 x -> 스레드 풀에서 제거 되지 않고 나중에 재사용
