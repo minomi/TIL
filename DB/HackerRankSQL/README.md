@@ -1,0 +1,1 @@
+[Hacker Rank](https://www.hackerrank.com/domains/sql)의 SQL 문제를 풀어보며 쿼리 연습을 해보자
