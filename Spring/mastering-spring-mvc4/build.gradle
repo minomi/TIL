@@ -28,6 +28,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf') // spring-boot-starter-thymeleaf 의존성 추가
     compile('org.springframework.social:spring-social-twitter')
+    compile('org.projectlombok:lombok:1.16.16')
     compile('org.webjars:materializecss:0.96.0')
     compile('org.webjars:jquery:2.1.4')
     testCompile('org.springframework.boot:spring-boot-starter-test')
