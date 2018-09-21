@@ -19,3 +19,9 @@ DateFormatter 클래스 : 스프링 부트에 App 이 시돌될 때 사용할 Da
 스프링에서 응답 가능한 오류 메시지를 결정하는 클래스는 DefaultMessageCodesResolver 이다.
 
 @PastLocalDate 어노테이션을 직접 정의해서 LocalDate 의 유효성을 검사하자.
+
+국제화(i18n) 애플리케이션 내에서 다양한 언어로 번역 할 수 있도록 처리 LocaleResolver 를 이용하자. 여러가지 구현체 들이 있음.
+
+Spring MVC 인터셉터는 서블릿 필터에 비유할 수 있다.
+
+th:text 문법은 표현식을 통해 HTML 요소의 내용을 대체한다. #{} 문법은 messages.properties 와 유사한 프로퍼티 소스로부터 메시지를 표현하고 싶을 때 사용한다

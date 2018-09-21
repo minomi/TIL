@@ -31,6 +31,6 @@ public class KRLocalDateFormatter implements Formatter<LocalDate> {
 
     @Override
     public String print(LocalDate object, Locale locale) {
-        return null;
+        return DateTimeFormatter.ofPattern(getPattern(locale)).format(object);
     }
 }
