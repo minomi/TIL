@@ -1,0 +1,2 @@
+Tue Sep 25 18:19:16 KST 2018	[Product{name='AAA', price=2.5}, Product{name='CD-RW', price=1.5}]
+Tue Sep 25 18:19:16 KST 2018	[Product{name='DVD-RW', price=3.0}]

@@ -1,5 +1,9 @@
 package com.minomi.sequence;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Required;
+
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -12,19 +16,28 @@ public class SequenceGenerator {
     private int initial;
     private final AtomicInteger counter = new AtomicInteger();
 
-    public SequenceGenerator() {
-    }
+    @Autowired
+    @Qualifier("datePrefixGenerator")
+    private PrefixGenerator prefixGenerator;
+
+    public SequenceGenerator() { }
 
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
 
+    @Required
     public void setSuffix(String suffix) {
         this.suffix = suffix;
     }
 
     public void setInitial(int initial) {
         this.initial = initial;
+    }
+
+    @Required
+    public void setPrefixGenerator(PrefixGenerator prefixGenerator) {
+        this.prefixGenerator = prefixGenerator;
     }
 
     public String getSequence() {

@@ -1,6 +1,5 @@
 package com.minomi.sequence;
 
-import com.minomi.sequence.config.SequenceGeneratorConfiguration;
 import com.minomi.sequence.dao.SequenceDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

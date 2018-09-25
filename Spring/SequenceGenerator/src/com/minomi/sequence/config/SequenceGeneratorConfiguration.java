@@ -20,4 +20,5 @@ public class SequenceGeneratorConfiguration {
         sequenceGenerator.setInitial(100000);
         return sequenceGenerator;
     }
+
 }
