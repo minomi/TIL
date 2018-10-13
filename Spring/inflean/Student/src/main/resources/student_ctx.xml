@@ -3,11 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="studentDao" class="dao.StudentDao"/>
-    <bean id="insertService" class="service.InsertService">
+    <bean id="studentDao" class="student.dao.StudentDao"/>
+    <bean id="insertService" class="student.service.InsertService">
         <constructor-arg ref="studentDao"></constructor-arg>
     </bean>
-    <bean id="selectService" class="service.SelectService">
+    <bean id="selectService" class="student.service.SelectService">
         <constructor-arg ref="studentDao"></constructor-arg>
     </bean>
 </beans>
