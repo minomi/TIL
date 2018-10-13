@@ -1,4 +1,4 @@
-package dto;
+package student.dto;
 
 /**
  * IDE : IntelliJ IDEA

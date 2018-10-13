@@ -1,7 +1,9 @@
-import dto.Student;
+package student;
+
+import student.dto.Student;
 import org.springframework.context.support.GenericXmlApplicationContext;
-import service.InsertService;
-import service.SelectService;
+import student.service.InsertService;
+import student.service.SelectService;
 
 /**
  * IDE : IntelliJ IDEA
@@ -10,7 +12,7 @@ import service.SelectService;
 public class Main {
     public static void main(String[] args) {
         GenericXmlApplicationContext context =
-                new GenericXmlApplicationContext("classpath:applicationContext.xml");
+                new GenericXmlApplicationContext("classpath:student_ctx.xml");
         SelectService selectService = context.getBean("selectService", SelectService.class);
         InsertService insertService = context.getBean("insertService", InsertService.class);
 

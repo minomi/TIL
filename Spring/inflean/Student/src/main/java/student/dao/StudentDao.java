@@ -1,6 +1,6 @@
-package dao;
+package student.dao;
 
-import dto.Student;
+import student.dto.Student;
 
 import java.util.HashMap;
 import java.util.HashSet;

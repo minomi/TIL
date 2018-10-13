@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>Student</module>
+        <module>autowired</module>
     </modules>
 
     <dependencies>

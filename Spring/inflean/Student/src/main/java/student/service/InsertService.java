@@ -1,7 +1,7 @@
-package service;
+package student.service;
 
-import dao.StudentDao;
-import dto.Student;
+import student.dao.StudentDao;
+import student.dto.Student;
 
 /**
  * IDE : IntelliJ IDEA
