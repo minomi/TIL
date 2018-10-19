@@ -12,3 +12,17 @@
 빈이 생성될때, 해제될때 특별한 작업을 하고 싶다면
 1. InitializingBean, DisposableBean 인터페이스 구현
 2. 설정 파일에 init-method, destroy-method 이용  
+
+인터셉터(interceptor) : 리다이렉트가 빈번하게 일어날때 사용 <br>
+보통 HandlerInterceptorAdapter 를 상속 받아 구현한다.
+
+1. Requeset 시작
+2. DispatcherServlet 작동
+3. preHandle 메서드 실행  (HandlerInterceptor Interface 에 정의)
+4. Handler
+5. Controller
+6. postHandle 메서드 실행  (HandlerInterceptor Interface 에 정의)
+7.  View 시작
+8. View 반환
+9. afterCompletion 메서드 실행  (HandlerInterceptor Interface 에 정의)
+10. Response
