@@ -15,5 +15,11 @@ public class MapAndReduceExample {
 
         double avg = students.stream().mapToInt(Student::getScore).average().getAsDouble();
         System.out.println("평균 점수: " + avg);
+
+        int sum = students.stream()
+                .map(Student::getScore)
+                .reduce(0, (s1, s2) -> s1 + s2);
+
+        System.out.println("합 : " + sum);
     }
 }
