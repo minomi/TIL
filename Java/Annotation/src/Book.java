@@ -4,23 +4,30 @@
  */
 public class Book {
     @StringValueInjection("자바 입문")
-    String title;
+    private String title;
 
     @StringValueInjection("1234-1234-1234")
-    String isbn;
+    private String isbn;
 
     @StringValueInjection("용문사")
-    String publisher;
+    private String publisher;
 
-    public String getTitle() {
+    @StringValueInjection("30000")
+    private Integer price;
+
+    String getTitle() {
         return title;
     }
 
-    public String getIsbn() {
+    String getIsbn() {
         return isbn;
     }
 
-    public String getPublisher() {
+    String getPublisher() {
         return publisher;
+    }
+
+    Integer getPrice() {
+        return price;
     }
 }

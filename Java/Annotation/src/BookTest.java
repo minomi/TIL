@@ -15,7 +15,7 @@ public class BookTest {
 
     @Before
     public void setUp() throws InstantiationException, IllegalAccessException {
-        book = stringInjectionContainer.get(Book.class);;
+        book = stringInjectionContainer.get(Book.class);
     }
 
     @Test
@@ -31,5 +31,10 @@ public class BookTest {
     @Test
     public void 책의_출판사는_용문사_이어야한다() {
         assertEquals("용문사", book.getPublisher());
+    }
+
+    @Test
+    public void 책의_가격은_String_이_아니니까_Null_이어야한다() {
+        assertNull(book.getPrice());
     }
 }
