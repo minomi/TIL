@@ -3,9 +3,8 @@ package me.minomi.jpaandbatchstudy.accounts;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * IDE : IntelliJ IDEA
@@ -13,15 +12,25 @@ import javax.persistence.Id;
  */
 
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"id"})
 @Data
 public class Account {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
 
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    private LocalDateTime updatedDate;
+
+    public Account changeInactive() {
+        this.status = Status.INACTIVE;
+        return this;
+    }
 }

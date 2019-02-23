@@ -44,7 +44,5 @@ public class AccountRepositoryTest {
         account.setName("minho");
         account.setPassword("pass");
         accountRepository.save(account);
-        Optional<Account> optionalAccount = accountRepository.findByName("minho");
-        assertTrue(optionalAccount.isPresent());
     }
 }

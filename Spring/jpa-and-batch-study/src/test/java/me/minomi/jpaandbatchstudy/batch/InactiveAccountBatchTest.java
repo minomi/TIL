@@ -1,5 +1,8 @@
-package me.minomi.springmvcstudy.batch;
+package me.minomi.jpaandbatchstudy.batch;
 
+import me.minomi.jpaandbatchstudy.accounts.Account;
+import me.minomi.jpaandbatchstudy.accounts.AccountRepository;
+import me.minomi.jpaandbatchstudy.accounts.Status;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
@@ -15,27 +18,28 @@ import static org.junit.Assert.assertEquals;
 
 /**
  * IDE : IntelliJ IDEA
- * Created by minho on 2019-02-19.
+ * Created by minho on 2019-02-20.
  */
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class InactiveUserJobTest {
+public class InactiveAccountBatchTest {
 
     @Autowired
     JobLauncherTestUtils jobLauncherTestUtils;
 
     @Autowired
-    UserRepository userRepository;
+    AccountRepository accountRepository;
 
     @Test
     public void 휴면_회원_전환_테스트() throws Exception {
         JobExecution jobExecution = jobLauncherTestUtils.launchJob();
         assertEquals(BatchStatus.COMPLETED, jobExecution.getStatus());
         assertEquals(0,
-                    userRepository.findByUpdatedDateBeforeAndStatusEquals(
-                            LocalDateTime.now().minusYears(1),
-                            UserStatus.ACTIVE)
-                            .size());
+                accountRepository.findByUpdatedDateBeforeAndStatusEquals(
+                        LocalDateTime.now().minusYears(1),
+                        Status.ACTIVE)
+                        .size());
     }
+
 }
