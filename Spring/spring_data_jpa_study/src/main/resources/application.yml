@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/spring'
+    password: '1234'
+    username: 'minho'
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
