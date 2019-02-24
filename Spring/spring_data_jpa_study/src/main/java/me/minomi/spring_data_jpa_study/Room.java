@@ -15,19 +15,15 @@ import java.util.List;
 @Entity
 @Table(name = "rooms") // 생략할 경우 class 명을 대문자로 변경된 것이 지정
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Room {
 
+    public static Room NULL_OBJ = new Room();
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id") // 생략할 경우 프로퍼티 명을 대문자로 변경된 것이 지정
     private Integer roomId;
 
     @Column(name = "name")
     private String name;
-
-    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Equipment> equipments;
-
 }
