@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    username: minho
+    password: 1234
+    url: jdbc:postgresql://localhost:5432/spring
+    platform: postgresql
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true

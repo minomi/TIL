@@ -1,7 +1,6 @@
 package me.minomi.springmvcstudy.event.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.AllArgsConstructor;
 import me.minomi.springmvcstudy.event.Event;
 import org.junit.Test;
 import org.junit.runner.RunWith;
