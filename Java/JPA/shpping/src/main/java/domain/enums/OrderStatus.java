@@ -1,4 +1,4 @@
-package shopping.domain.enums;
+package domain.enums;
 
 /**
  * IDE : IntelliJ IDEA
