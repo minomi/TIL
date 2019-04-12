@@ -1,4 +1,7 @@
+import com.querydsl.jpa.impl.JPAQuery;
 import domain.Member;
+import domain.Order;
+import domain.Product;
 import domain.Team;
 
 import javax.persistence.*;
@@ -19,10 +22,10 @@ public class Main {
 
         try {
             tx.begin();
-//            logic(entityManager);
-            testMemberAndTeam(entityManager);
-//            queryLoginJoin(entityManager);
-//            biDirection(entityManager);
+            insertMembers(entityManager);
+            jpqlExam1(entityManager);
+            jpqlExam2(entityManager);
+            jpqlExam3(entityManager);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
@@ -33,70 +36,50 @@ public class Main {
         entityManagerFactory.close();
     }
 
-    private static void biDirection(EntityManager entityManager) {
-        Team myTeam = entityManager.find(Team.class, "myTeam");
-        List<Member> members = myTeam.getMembers();
-        members.forEach(member -> System.out.println(member.getId()));
+    private static void jpqlExam3(EntityManager entityManager) {
+        String jpql = "select p.order from Product as p";
+        TypedQuery<Order> orderTypedQuery = entityManager.createQuery(jpql, Order.class);
+        orderTypedQuery.getResultList().forEach(order -> {
+            System.out.println(order);
+        });
     }
 
-    private static void testMemberAndTeam(EntityManager entityManager) {
-        Team myTeam = new Team("myTeam", "myTeam");
-        entityManager.persist(myTeam);
-
-        Member minho = new Member();
-        minho.setId("minho");
-        minho.setUserName("minho");
-        minho.setTeam(myTeam);
-        entityManager.persist(minho);
-
-
-        Member hyejung = new Member();
-        hyejung.setId("hyejung");
-        hyejung.setUserName("hyejung");
-        hyejung.setTeam(myTeam);
-        entityManager.persist(hyejung);
-
-        Team minhoTeam = minho.getTeam();
-        Team hyejungTeam = hyejung.getTeam();
-
-        System.out.println("minho 의 팀은 ? : " + minhoTeam.getId());
-        System.out.println("hyejung 의 팀은 ? : " + hyejungTeam.getId());
+    private static void jpqlExam2(EntityManager entityManager) {
+        String jpql = "select m.team from Member as m";
+        TypedQuery<Team> teamTypedQuery = entityManager.createQuery(jpql, Team.class);
+        Team team = teamTypedQuery.getSingleResult();
+        System.out.println(team);
     }
 
-    private static void queryLoginJoin(EntityManager entityManager) {
-        String jpql1 = "select m from Member m join m.team t where t.name=:teamName";
-        List<Member> resultList = entityManager.createQuery(jpql1, Member.class)
-                .setParameter("teamName", "myTeam")
-                .getResultList();
-
-        resultList.forEach(member -> System.out.println(member.getId()));
+    private static void jpqlExam1(EntityManager entityManager) {
+        String jpql = "select m from Member as m where m.userName = :userName";
+        TypedQuery<Member> query = entityManager.createQuery(jpql, Member.class)
+                .setParameter("userName", "minho");
+        List<Member> minhoList = query.getResultList();
+        minhoList.forEach(member -> System.out.println(member));
     }
 
-    private static void logic(EntityManager entityManager) {
-        Member minho = new Member();
-        minho.setId("minho");
-        minho.setUserName("민호");
-        minho.setAge(2);
+    private static void insertMembers(EntityManager entityManager) {
+        Member minho1 = new Member("minho", 1);
+        Member minho2 = new Member("minho", 2);
+        Member minho3 = new Member("minho",3);
 
-        Member minhoCopy = new Member();
-        minho.setId("minhoCopy");
-        minho.setUserName("민호");
-        minho.setAge(2);
+        Team team = new Team("minhoTeam");
+        minho1.setTeam(team);
+        minho2.setTeam(team);
+        minho3.setTeam(team);
+        team.addMember(minho1);
+        team.addMember(minho2);
+        team.addMember(minho3);
 
-        // insert
-        entityManager.persist(minho);
-        entityManager.persist(minhoCopy);
+        Order order = new Order(3, minho1);
+        minho1.addOrder(order);
 
+        Product product = new Product("상품", 1000, 2);
+        product.setOrder(order);
+        order.addProduct(product);
 
-        // select
-        Member findMember = entityManager.find(Member.class, "minho");
-        System.out.println("findMember = " + findMember.getUserName() + " , age = " + findMember.getAge());
-
-        // select All
-        List<Member> members = entityManager.createQuery("select m from Member m", Member.class)
-                .getResultList();
-        System.out.println("members.size= " + members.size());
-
-        entityManager.remove(minho);
+        entityManager.persist(team);
+        entityManager.persist(order);
     }
 }

@@ -1,9 +1,6 @@
 package domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,41 +11,30 @@ import java.util.List;
 
 @Entity
 public class Team {
-    @Id
-    @Column(name = "TEAM_ID")
-    private String id;
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "team_id")
+    private Long id;
 
     private String name;
 
-    @OneToMany(mappedBy = "team")
+    @OneToMany(mappedBy = "team", cascade = CascadeType.PERSIST)
     private List<Member> members = new ArrayList<>();
 
-    public Team(String id, String name) {
-        this.id = id;
+    public Team() {}
+
+    public Team(String name) {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public void addMember(Member member) {
+        members.add(member);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Member> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<Member> members) {
-        this.members = members;
+    @Override
+    public String toString() {
+        return "Team{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
