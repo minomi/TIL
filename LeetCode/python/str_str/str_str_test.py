@@ -1,5 +1,5 @@
 import unittest
-from str_str import str_str
+from str_str.str_str import str_str
 
 
 class StrStrTest(unittest.TestCase):

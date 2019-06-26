@@ -1,5 +1,5 @@
 import unittest
-from combination_sum_3 import combination_sum_3
+from combination_sum_3.combination_sum_3 import combination_sum_3
 
 class CombinationSum3Test(unittest.TestCase):
 

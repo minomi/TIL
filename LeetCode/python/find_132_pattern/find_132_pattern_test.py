@@ -1,5 +1,5 @@
 import unittest
-from find_132_pattern import find132pattern
+from find_132_pattern.find_132_pattern import find132pattern
 
 
 class Find132Pattern(unittest.TestCase):
