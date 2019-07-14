@@ -1,0 +1,44 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'com.google.cloud.tools.jib' version '1.0.0'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'me.minho'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+// gradle clean bootJar jibDockerBuild dockerLocalRun --stacktrace
+task dockerLocalRun() {
+    doLast {
+        def imageName = "${project.name}:${project.version}" 
+        def containerName = "spring-boot-docker-demo"
+        def cmd
+
+        println("\n\$ ${cmd="docker ps"}")
+        exec{ commandLine cmd.split(' ') }
+
+        println("\n\$ ${cmd="docker stop ${containerName}"}")
+        exec{ commandLine cmd.split(' ') }
+
+        println("\n\$ ${cmd="docker rm ${containerName}"}")
+        exec{ commandLine cmd.split(' ') }
+
+        println("\n\$ ${cmd="docker run -d -p 8080:8080 --name ${containerName} ${imageName}"}")
+        exec{ commandLine cmd.split(' ') }
+
+        println('\ndocker build complete') 
+    }
+}
+
