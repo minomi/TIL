@@ -29,6 +29,7 @@ task dockerLocalRun() {
         println("\n\$ ${cmd="docker ps"}")
         exec{ commandLine cmd.split(' ') }
 
+        // conainerName 의 컨테이너가 없으면 실패하더라
         println("\n\$ ${cmd="docker stop ${containerName}"}")
         exec{ commandLine cmd.split(' ') }
 
