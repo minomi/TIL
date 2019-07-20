@@ -2,8 +2,7 @@ spring:
   datasource:
     username: minho
     password: 1234
-    url: jdbc:postgresql://localhost:5432/spring
-    platform: postgresql
+    url: jdbc:postgresql://localhost:5432/testdb
   jpa:
     show-sql: true
     generate-ddl: true
