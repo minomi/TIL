@@ -26,7 +26,7 @@ public class PrintInOrder {
 
     public void third(Runnable printThird) throws InterruptedException {
         // printThird.run() outputs "third". Do not change or remove this line.
-        second.acquire(); // second 세마포어의 permits 이 0 이니 일단 대기
+        second.acquire(); // second 세마포어의 permits 이 0 이니 일단 대
         printThird.run();
     }
 
