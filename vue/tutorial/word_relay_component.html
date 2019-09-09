@@ -1,0 +1,58 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>끝말잇기</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="root">
+  <word-relay></word-relay>
+  <word-relay></word-relay>
+  <word-relay></word-relay>
+</div>
+</body>
+<script>
+  Vue.component(
+    'word-relay',
+    {
+      template: `
+<div>
+      {{ current }}
+      <form>
+        <input v-model="value" ref="input">
+        <button v-on:click="onClickButton">입력!</button>
+      </form>
+      {{ result }}
+</div>
+`,
+      data: function () {
+        return {
+          current: '시작',
+          value: '',
+          result: ''
+        }
+      },
+      methods: {
+        onClickButton(e) {
+          e.preventDefault()
+          if (this.current.slice(-1) === this.value.slice(0, 1)) {
+            this.result = '딩동댕'
+            this.current = this.value
+            this.value = ''
+          } else {
+            this.result = '땡'
+          }
+          this.$ref.input.focus()
+        }
+      }
+    })
+</script>
+<script>
+  const app = new Vue({
+    el: '#root'
+  })
+</script>
+</html>
