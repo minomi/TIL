@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import ReactionVelocity  from "./ReactionVelocity"
+import RockScissorsPaper from "./RockScissorsPaper"
 
-new Vue(ReactionVelocity).$mount('#root')
+new Vue(RockScissorsPaper).$mount('#root')

@@ -1,77 +1,51 @@
 <template>
   <div>
-    <div id='screen' @click=onClickScreen :class="state">
-      {{ message }}
+    <div id="computer" :style="computedStyleObject"></div>
+    <div>
+      <button @click="onClickButton('바위')">바위</button>
+      <button @click="onClickButton('가위')">가위</button>
+      <button @click="onClickButton('보')">보</button>
     </div>
-    <template v-if="result.length">
-    평균시간 : {{ average }} ms
-    <button @:click="onClickButton">리셋</button>
-    </template>
+    <div>{{ result }}</div>
+    <div>현재 {{ score }} 점</div>
   </div>
 </template>
 
 <script>
-  let startTime = 0;
-  let timeout = null;
+  const rspCoords = {
+    바위 : '0',
+    가위 : '-142px',
+    보: '-284px'
+  };
 
   export default {
-    name: "ReactionVelocity",
+    name: "RockScissorsPaper",
     data: function () {
       return {
-        message: '클릭해서 시작하세요',
-        state: 'waiting',
-        result: []
+        imageCoords: rspCoords.바위,
+        result : 0,
+        score : '',
       }
     },
     computed: {
-      average() {
-        return (this.result.reduce((a, c) => a + c, 0) / this.result.length) || 0
-      }
+     computedStyleObject() {
+       return {
+         background: `url(https://en.pimg.jp/023/182/267/1/23182267.jpg) ${this.imageCoords} 0`
+       }
+     }
     },
     methods: {
-      onClickScreen() {
-        if (this.state === 'waiting') {
-          this.state = 'ready'
-          this.message = '초록색이 되면 클릭하세요'
+      onClickButton(choice) {
 
-          timeout = setTimeout(() => {
-            this.state = 'now'
-            this.message = '지금 클릭하세요!!!'
-            startTime = new Date();
-          }, (Math.random() * 1000) + 2000)
-
-        } else if (this.state === 'ready') {
-          clearTimeout(timeout);
-          this.state = 'waiting'
-          this.message = '너무 성급하시군요! 초록색이 되면 클릭하세요'
-        } else {
-          this.result.push(new Date() - startTime)
-          this.message = '초록색이 되면 클릭하세요'
-          this.state = 'waiting'
-        }
-      },
-      onClickButton() {
-        this.result = []
       }
     }
   }
 </script>
 
 <style scoped>
-  #screen {
-    width: 200px;
-    height: 300px;
-    text-align: center;
-    user-select: none;
-  }
-  #screen.waiting {
-    background-color: aqua;
-  }
-  #screen.ready {
-    background-color: red;
-    color: white;
-  }
-  #screen.now {
-    background-color: greenyellow;
+  #computer {
+    width: 142px;
+    height: 200px;
+    background-position: 0 0;
   }
 </style>
