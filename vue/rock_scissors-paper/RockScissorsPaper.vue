@@ -17,14 +17,26 @@
     가위 : '-142px',
     보: '-284px'
   };
+  const scores = {
+    바위 : 1,
+    가위 : 0,
+    보: -1
+  };
+  const computerChoice = (imgCoord) => {
+    return Object.entries(rspCoords).find((v) => {
+      return v[1] === imgCoord
+    })[0]
+  };
 
+
+  let interval = null;
   export default {
     name: "RockScissorsPaper",
     data: function () {
       return {
         imageCoords: rspCoords.바위,
-        result : 0,
-        score : '',
+        result : '',
+        score : 0,
       }
     },
     computed: {
@@ -35,9 +47,46 @@
      }
     },
     methods: {
+      changeHand() {
+        interval = setInterval(() => {
+          if (this.imageCoords === rspCoords.바위) {
+            this.imageCoords = rspCoords.가위
+          } else if (this.imageCoords === rspCoords.가위) {
+            this.imageCoords = rspCoords.보
+          } else if (this.imageCoords === rspCoords.보) {
+            this.imageCoords = rspCoords.바위
+          }
+        }, 100);
+      },
       onClickButton(choice) {
-
+        clearInterval(interval);
+        const myScore = scores[choice];
+        const cpuScore = scores[computerChoice(this.imageCoords)]
+        const diff = myScore - cpuScore;
+        if (diff === 0) {
+          this.result = '비김'
+        } else if ([-1, 2].includes(diff)) {
+          this.result = 'win'
+          this.score += 1;
+        } else {
+          this.result = 'lose'
+          this.score -= 1;
+        }
+        setTimeout(() => {
+          this.changeHand()
+        }, 1000)
       }
+    },
+    created() {
+      console.log('created');
+    },
+    mounted() {
+      console.log('mounted');
+      this.changeHand()
+    },
+    beforeDestroy() {
+      console.log('beforeDestroy')
+      clearInterval(interval);
     }
   }
 </script>
