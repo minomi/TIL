@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>props 전달</title>
+</head>
+<body>
+<div id="app">
+  <child-component
+          v-bind:propsData="message"
+          v-on:show-log="printText">
+  </child-component>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const eventBus = new Vue();
+  Vue.component('child-component', {
+    props: ['propsdata'],
+    template: '<div><p>{{ propsdata }}</p><button v-on:click="showLog">show</button></div>',
+    methods: {
+      showLog: function () {
+        this.$emit('show-log');
+        eventBus.$emit('triggerEventBus', 100);
+      }
+    }
+  })
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue! passed from Parent Component'
+    },
+    created: function() {
+      eventBus.$on('triggerEventBus', function (value) {
+        console.log(`이벤트로 전달 받은 값 : ${value}`)
+      })
+    },
+    methods: {
+      printText: function () {
+        console.log('received an event')
+      }
+    }
+  })
+</script>
+</body>
+</html>

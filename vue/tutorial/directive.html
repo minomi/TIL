@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue directive</title>
+</head>
+<body>
+<div id="app">
+  <a v-if="flag">do it vue.js</a>
+  <ul>
+    <li v-for="system in systems">{{ system }}</li>
+  </ul>
+  <p v-show="flag">do it vue.js</p>
+  <h6 v-bind:id="uid">vue book</h6>
+  <button v-on:click="popupAlert">alert button</button>
+  <input v-model="message">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el : '#app',
+    data: {
+      message: 'hello',
+      uid: 'pTag',
+      systems : [1, 2, 3, 4, 5],
+      flag : true
+    },
+    methods: {
+      popupAlert: function () {
+        alert('popup!!!')
+      }
+    },
+    watch: {
+      message: function (data) {
+        console.log('change value on message', data)
+      }
+    }
+  })
+</script>
+</body>
+</html>

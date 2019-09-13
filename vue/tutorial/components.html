@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>컴포넌트 통신</title>
+</head>
+<body>
+<div id="app">
+  <my-component1>
+    <my-component2></my-component2>
+  </my-component1>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  const comp1 = {
+    template: '<div>첫 번째 컴포넌트 {{ comp1Data }}</div>',
+    data: function () {
+      return {
+        comp1Data : 100
+      }
+    }
+  }
+  const comp2 = {
+    template: '<div>두 번째 컴포넌트 {{ comp2Data }} </div>',
+    data: function () {
+      return {
+        comp2Data : comp1.data.comp1Data
+      }
+    }
+  }
+  new Vue({
+    el: '#app',
+    components: {
+      'my-component1': comp1,
+      'my-component2': comp2
+    }
+  })
+</script>
+</body>
+</html>

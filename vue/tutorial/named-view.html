@@ -1,0 +1,53 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>names view</title>
+</head>
+<body>
+<div id="app">
+  <router-view name="header"></router-view>
+  <router-view></router-view>
+  <router-view name="footer"></router-view>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+<script>
+  const Header = {template: '<div>This is Header</div>'}
+  const Body = {template: '<div>This is Body</div>'}
+  const Footer = {template: '<div>This is Footer</div>'}
+
+  const LoginHeader = {template: '<div>This is Login Header</div>'}
+  const LoginBody = {template: '<div>This is Login Body</div>'}
+  const LoginFooter = {template: '<div>This is Login Footer</div>'}
+
+  const router = new VueRouter({
+    routes: [
+      {
+        path: '/',
+        components: {
+          header: Header,
+          default: Body,
+          footer: Footer
+        }
+      },
+      {
+        path: '/login',
+        components: {
+          header: LoginHeader,
+          default: LoginBody,
+          footer: LoginFooter
+        }
+      }
+    ]
+  });
+
+  const app = new Vue({
+    router
+  }).$mount('#app');
+
+</script>
+</body>
+</html>

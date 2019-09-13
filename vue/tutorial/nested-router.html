@@ -1,0 +1,55 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+<div id="app">
+  <router-view></router-view>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+<script>
+  const UserProfile = {
+    template: '<p>User Profile Component</p>'
+  }
+  const UserPost = {
+    template: '<p>User Post Component</p>'
+  }
+  const User = {
+    template: `
+      <div>
+        User Component
+        <router-view></router-view>
+      </div>`
+  }
+
+  const childrenPath = [
+    {
+      path: 'profile',
+      component: UserProfile
+    },
+    {
+      path: 'post',
+      component: UserPost
+    }
+  ]
+  const routes = [
+    {
+      path: '/user',
+      component: User,
+      children: childrenPath
+    }
+  ]
+
+  const router = new VueRouter({routes})
+
+  const app = new Vue({
+    router
+  }).$mount('#app')
+</script>
+</body>
+</html>

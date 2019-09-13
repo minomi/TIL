@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>vue directive</title>
+</head>
+<body>
+<div id="app">
+  new data value : {{ newDataValue }}
+  <p v-bind:id="uid"> ho ho</p>
+  <button v-on:click="eventMethod"></button>
+  <ul v-if="flag">
+    <li>123</li>
+    <li>132</li>
+    <li>213</li>
+  </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

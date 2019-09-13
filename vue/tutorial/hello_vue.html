@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello Vue</title>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+    <my-global-component></my-global-component>
+    <my-local-component></my-local-component>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    // 요개 Vue 인스턴스다! 꼭 필요함
+    Vue.component('my-global-component', {
+      template: '<div>안녕 나는 전역 컴포넌트야</div>'
+    });
+    var cmp = {
+      template: '<div>안녕 나는 지역 컴포넌트야</div>'
+    }
+    new Vue({
+      el : '#app', // el 속성
+      data: { // data 속성
+        message: 'Hello vue js'
+      },
+      components: {
+        'my-local-component': cmp
+      }
+    })
+  </script>
+</body>
+</html>
