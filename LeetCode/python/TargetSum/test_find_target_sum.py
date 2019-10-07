@@ -21,4 +21,3 @@ def test_find_target_sum_ways():
 
 if __name__ == '__main__':
     print(find_target_sum_ways([1, 1, 1, 1, 1], 3));
-
